@@ -31,20 +31,20 @@ else()
 endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
+message("-- Target compiler flags are: ${MAIN_CFLAGS}")
+message("-- CMAKE_SYSTEM_PREFIX_PATH is: ${CMAKE_SYSTEM_PREFIX_PATH}")
 
-find_package(OpenCV 4.0 QUIET)
+find_package(OpenCV 4.2.0 REQUIRED)
    if(NOT OpenCV_FOUND)
-      message(FATAL_ERROR "OpenCV > 4.4 not found.")
+      message(FATAL_ERROR "OpenCV > 4.2.0 not found.")
    endif()
 
-MESSAGE("OPENCV VERSION:")
-MESSAGE(${OpenCV_VERSION})
-
-find_package(Eigen3 REQUIRED)
+find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package(realsense2)
 
 include_directories(
+${OpenCV_INCLUDE_DIRS}
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
 ${PROJECT_SOURCE_DIR}/include/CameraModels
@@ -126,6 +126,9 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 -lboost_serialization
 -lcrypto
 )
+
+message(STATUS "OpenCV_INCLUDE_DIRS = ${OpenCV_INCLUDE_DIRS}")
+message(STATUS "OpenCV_LIBS = ${OpenCV_LIBS}")
 
 # If RealSense SDK is found the library is added and its examples compiled
 if(realsense2_FOUND)
