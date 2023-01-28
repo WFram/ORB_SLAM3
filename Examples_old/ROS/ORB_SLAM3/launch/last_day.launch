@@ -1,0 +1,7 @@
+<!-- <launch>
+    <node pkg="ORB_SLAM3" type="Mono_Inertial" name="Mono_Inertial" args="Vocabulary/ORBvoc.txt Examples/Monocular-Inertial/last_day.yaml" />
+</launch> -->
+
+<launch>
+    <node pkg="ORB_SLAM3" type="Mono_Inertial" name="Mono_Inertial" args="/home/wfram/ORB_SLAM3/Vocabulary/ORBvoc.txt /home/wfram/ORB_SLAM3/Examples/Monocular-Inertial/last_day.yaml" />
+</launch>

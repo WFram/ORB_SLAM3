@@ -171,6 +171,7 @@ public:
     double t0IMU; // time-stamp of IMU initialization
     bool mFastInit = false;
 
+    bool mbEmptyImu = false;
 
     vector<MapPoint*> GetLocalMapMPS();
 

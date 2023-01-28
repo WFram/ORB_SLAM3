@@ -130,6 +130,9 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 message(STATUS "OpenCV_INCLUDE_DIRS = ${OpenCV_INCLUDE_DIRS}")
 message(STATUS "OpenCV_LIBS = ${OpenCV_LIBS}")
 
+message(STATUS "Pangolin_LIBS = ${Pangolin_LIBRARIES}")
+message(STATUS "Eigen_LIBS = ${EIGEN3_LIBS}")
+
 # If RealSense SDK is found the library is added and its examples compiled
 if(realsense2_FOUND)
     include_directories(${PROJECT_NAME}

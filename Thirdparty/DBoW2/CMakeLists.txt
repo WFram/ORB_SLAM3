@@ -8,9 +8,6 @@ endif()
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3 -march=native ")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall  -O3 -march=native")
 
-#set(CMAKE_SYSTEM_PREFIX_PATH "/usr/local;/usr;/;/home/wfram/.local/lib/python3.8/site-packages/cmake/data;/usr/local;/usr/X11R6;/usr/pkg;/opt")
-#message("-- CMAKE_SYSTEM_PREFIX_PATH is: ${CMAKE_SYSTEM_PREFIX_PATH}")
-
 set(HDRS_DBOW2
   DBoW2/BowVector.h
   DBoW2/FORB.h 
@@ -32,9 +29,12 @@ set(SRCS_DUTILS
   DUtils/Timestamp.cpp)
 
 
-find_package(OpenCV 4.2.0 REQUIRED)
+find_package(OpenCV 4 QUIET)
 if(NOT OpenCV_FOUND)
-  message(FATAL_ERROR "OpenCV > 4.2.0 not found.")
+   find_package(OpenCV 3.0 QUIET)
+   if(NOT OpenCV_FOUND)
+      message(FATAL_ERROR "OpenCV > 3.0 not found.")
+   endif()
 endif()
 
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
@@ -42,3 +42,4 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 include_directories(${OpenCV_INCLUDE_DIRS})
 add_library(DBoW2 SHARED ${SRCS_DBOW2} ${SRCS_DUTILS})
 target_link_libraries(DBoW2 ${OpenCV_LIBS})
+
